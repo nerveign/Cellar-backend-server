@@ -11,7 +11,7 @@ Request Body :
   "username": "Tiffanxaa",
   "fullName": "Xazza",
   "email": "tiffanxaa@gmail.com",
-  "profileImg": "xaa.jpg", // optional
+  "profileImg": "xaa.jpg", //optional
   "password": "tiffanxaa192"
 }
 ```

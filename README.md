@@ -1,6 +1,6 @@
 ## Setup .env file
 
-```json
+```bash
 PORT=...
 DATABASE_URL=...
 JWT_SECRET=...
@@ -9,12 +9,12 @@ NODE_ENV=development
 
 ## Build the app
 
-```json
+```bash
 npm run build
 ```
 
 ## Run the app
 
-```json
+```bash
 npm run start
 ```
