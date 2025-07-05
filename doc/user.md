@@ -6,7 +6,7 @@ Endpoint : POST /api/v1/register
 
 Request Body :
 
-```json
+```jsonc
 {
   "username": "Tiffanxaa",
   "fullName": "Xazza",
