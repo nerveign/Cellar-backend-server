@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { LoginUserRequest, RegisterUserRequest } from '../types/user-type';
 import { UserService } from '../service/user-service';
-import { generateToken } from '../utils/helper';
+import { generateToken } from '../utils/generateToken';
+import { config } from '../config/config';
 
 export class UserController {
     static async register(
@@ -44,14 +45,9 @@ export class UserController {
     }
 
     static logout(req: Request, res: Response, next: NextFunction) {
-        try {
-            UserService.logout(res);
-
-            res.status(200).json({
-                data: 'OK',
-            });
-        } catch (error) {
-            next(error);
-        }
+        res
+            .clearCookie('jwt', config.cookiesOption)
+            .status(200)
+            .json({ message: "Logout succesful" })
     }
 }

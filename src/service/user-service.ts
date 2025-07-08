@@ -1,6 +1,7 @@
+import bcrypt from 'bcrypt';
+
 import { ResponseError } from '../error/response-error';
 import { IUser, User } from '../models/user-model';
-import bcrypt from 'bcrypt';
 import {
     LoginUserRequest,
     RegisterUserRequest,
@@ -8,6 +9,7 @@ import {
     UserResponse,
 } from '../types/user-type';
 import { Request, Response } from 'express';
+import { config } from '../config/config';
 
 export class UserService {
     static async register(request: RegisterUserRequest): Promise<UserResponse> {
@@ -23,20 +25,15 @@ export class UserService {
                 'Password must be at leasts 8 characters'
             );
         }
+
         const checkUsername = await User.findOne({ username });
-
-        if (checkUsername) {
-            throw new ResponseError(400, 'Username or Email already exists');
-        }
-
         const checkEmail = await User.findOne({ email });
 
-        if (checkEmail) {
+        if (checkUsername || checkEmail) {
             throw new ResponseError(400, 'Username or Email already exists');
         }
 
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser: IUser = new User({
             username,
@@ -66,9 +63,5 @@ export class UserService {
         }
 
         return toUserResponse(user);
-    }
-
-    static logout(res: Response): void {
-        res.cookie('jwt', '', { maxAge: 0 });
     }
 }

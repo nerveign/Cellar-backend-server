@@ -1,10 +1,10 @@
 import express from 'express';
 import { UserController } from '../controller/user-controller';
 
-const userRouter = express.Router();
+const authRouter = express.Router();
 
-userRouter.post('/api/v1/register', UserController.register);
-userRouter.post('/api/v1/login', UserController.login);
-userRouter.post('/api/v1/logout', UserController.logout);
+authRouter.post('/register', UserController.register);
+authRouter.post('/login', UserController.login);
+authRouter.post('/logout', UserController.logout);
 
-export default userRouter;
+export default authRouter;
