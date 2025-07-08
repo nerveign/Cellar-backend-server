@@ -2,7 +2,7 @@ import { ResponseError } from '../error/response-error';
 import { IUser, User } from '../models/user-model';
 import bcrypt from 'bcrypt';
 import { LoginUserRequest, RegisterUserRequest, toUserResponse, UserResponse } from '../type/user-type';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { Validation } from '../validation/validation';
 import { AuthValidation } from '../validation/auth-validation';
 
