@@ -7,6 +7,11 @@ JWT_SECRET=...
 NODE_ENV=development
 ```
 
+## Run the app (development)
+``` bash
+npm run dev
+```
+
 ## Build the app
 
 ```bash
