@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
+import { config } from './config';
 
 export const connectDB = async () => {
   try {
-    const url = process.env.DATABASE_URL as string;
+    const url = config.mongoUri;
 
     if (!url) console.log('URL not defined!');
 

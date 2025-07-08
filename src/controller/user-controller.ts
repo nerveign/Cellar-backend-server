@@ -4,7 +4,7 @@ import { UserService } from '../service/user-service';
 import { generateToken } from '../utils/helper';
 
 export class UserController {
-  static async register(req: Request, res: Response, next: NextFunction): Promise<any> {
+  static async register(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const request: RegisterUserRequest = req.body as RegisterUserRequest;
       const response = await UserService.register(request);
@@ -17,7 +17,7 @@ export class UserController {
     }
   }
 
-  static async login(req: Request, res: Response, next: NextFunction): Promise<any> {
+  static async login(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const request: LoginUserRequest = req.body as LoginUserRequest;
       const response = await UserService.login(request);
