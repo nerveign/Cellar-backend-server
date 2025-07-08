@@ -14,3 +14,7 @@ export const generateToken = (userId: string, res: Response) => {
 
   return token;
 };
+
+export const requiredMessage = (text: string) => {
+  return { required_error: `${text} is required` };
+};

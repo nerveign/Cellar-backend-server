@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateToken = void 0;
+exports.requiredMessage = exports.generateToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const generateToken = (userId, res) => {
     const secret = process.env.JWT_SECRET;
@@ -17,3 +17,7 @@ const generateToken = (userId, res) => {
     return token;
 };
 exports.generateToken = generateToken;
+const requiredMessage = (text) => {
+    return { required_error: `${text} is required` };
+};
+exports.requiredMessage = requiredMessage;
