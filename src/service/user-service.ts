@@ -9,7 +9,8 @@ import { AuthValidation } from '../validation/auth-validation';
 export class UserService {
   static async register(request: RegisterUserRequest): Promise<UserResponse> {
     const registerRequest: RegisterUserRequest = Validation.validate(AuthValidation.REGISTER, request) as RegisterUserRequest;
-    const { username, fullName, email, password } = registerRequest;
+    let { username, fullName, email, password } = registerRequest;
+    username = username.toLowerCase();
 
     const checkUsername = await User.findOne({ username });
     const checkEmail = await User.findOne({ email });

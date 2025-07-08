@@ -23,7 +23,8 @@ class UserService {
     static register(request) {
         return __awaiter(this, void 0, void 0, function* () {
             const registerRequest = validation_1.Validation.validate(auth_validation_1.AuthValidation.REGISTER, request);
-            const { username, fullName, email, password } = registerRequest;
+            let { username, fullName, email, password } = registerRequest;
+            username = username.toLowerCase();
             const checkUsername = yield user_model_1.User.findOne({ username });
             const checkEmail = yield user_model_1.User.findOne({ email });
             if (checkUsername || checkEmail) {
