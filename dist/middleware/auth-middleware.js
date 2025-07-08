@@ -8,14 +8,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.protectedRoute = void 0;
 const response_error_1 = require("../error/response-error");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const protectedRoute = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const token = req.cookies.token;
+        const token = req.cookies.jwt;
         if (!token) {
-            throw new response_error_1.ResponseError(401, 'Unauthorized, token unavailable');
+            throw new response_error_1.ResponseError(401, 'Unauthorized');
+        }
+        const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
+        if (!decoded) {
+            throw new response_error_1.ResponseError(401, 'Unauthorized');
         }
         next();
     }

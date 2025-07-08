@@ -4,8 +4,9 @@ import { ZodError } from 'zod';
 
 export const errorMiddleware = async (error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof ZodError) {
+    const messages = error.issues.map((issue) => issue.message);
     res.status(400).json({
-      errors: `Validation error : ${JSON.stringify(error)}`,
+      errors: messages[0],
     });
   } else if (error instanceof ResponseError) {
     res.status(error.status).json({

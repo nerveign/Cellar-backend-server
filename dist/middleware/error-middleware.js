@@ -11,8 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.errorMiddleware = void 0;
 const response_error_1 = require("../error/response-error");
+const zod_1 = require("zod");
 const errorMiddleware = (error, req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    if (error instanceof response_error_1.ResponseError) {
+    if (error instanceof zod_1.ZodError) {
+        const messages = error.issues.map((issue) => issue.message);
+        res.status(400).json({
+            errors: messages[0],
+        });
+    }
+    else if (error instanceof response_error_1.ResponseError) {
         res.status(error.status).json({
             errors: error.message,
         });

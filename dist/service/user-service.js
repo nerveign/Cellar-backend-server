@@ -17,22 +17,16 @@ const response_error_1 = require("../error/response-error");
 const user_model_1 = require("../models/user-model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const user_type_1 = require("../type/user-type");
+const validation_1 = require("../validation/validation");
+const auth_validation_1 = require("../validation/auth-validation");
 class UserService {
     static register(request) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { username, fullName, email, password } = request;
-            if (!username || !fullName || !email || !password) {
-                throw new response_error_1.ResponseError(400, 'All fields are required!');
-            }
-            if (password.length < 8) {
-                throw new response_error_1.ResponseError(400, 'Password must be at leasts 8 characters');
-            }
+            const registerRequest = validation_1.Validation.validate(auth_validation_1.AuthValidation.REGISTER, request);
+            const { username, fullName, email, password } = registerRequest;
             const checkUsername = yield user_model_1.User.findOne({ username });
-            if (checkUsername) {
-                throw new response_error_1.ResponseError(400, 'Username or Email already exists');
-            }
             const checkEmail = yield user_model_1.User.findOne({ email });
-            if (checkEmail) {
+            if (checkUsername || checkEmail) {
                 throw new response_error_1.ResponseError(400, 'Username or Email already exists');
             }
             const salt = yield bcrypt_1.default.genSalt(10);
@@ -49,7 +43,8 @@ class UserService {
     }
     static login(request) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { email, password } = request;
+            const loginRequest = validation_1.Validation.validate(auth_validation_1.AuthValidation.LOGIN, request);
+            const { email, password } = loginRequest;
             const user = (yield user_model_1.User.findOne({ email }));
             if (!user) {
                 throw new response_error_1.ResponseError(400, 'Email or Password is wrong');
