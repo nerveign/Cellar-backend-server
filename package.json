@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --ignore-watch dist src/index.ts",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "jest": {
     "transform": {
@@ -37,6 +39,8 @@
     "@types/mongoose": "^5.11.97",
     "babel-jest": "^30.0.4",
     "jest": "^30.0.4",
+    "prettier": "^3.6.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
   }
 }
