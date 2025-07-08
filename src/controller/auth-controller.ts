@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { LoginUserRequest, RegisterUserRequest } from '../types/user-type';
-import { UserService } from '../service/user-service';
+import { LoginUserRequest, RegisterUserRequest } from '../types/auth-type';
+import { UserService } from '../service/auth-service';
 import { generateToken } from '../utils/generateToken';
 import { config } from '../config/config';
 

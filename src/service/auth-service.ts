@@ -7,9 +7,7 @@ import {
     RegisterUserRequest,
     toUserResponse,
     UserResponse,
-} from '../types/user-type';
-import { Request, Response } from 'express';
-import { config } from '../config/config';
+} from '../types/auth-type';
 
 export class UserService {
     static async register(request: RegisterUserRequest): Promise<UserResponse> {
