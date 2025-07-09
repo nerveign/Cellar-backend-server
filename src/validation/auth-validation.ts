@@ -24,15 +24,26 @@ export class AuthValidation {
         message: 'Email must be at least 5 character',
       })
       .email(),
-    password: z.string(requiredMessage('Password')).min(8, {
-      message: 'Password must be at least 8 character',
-    }),
+    password: z
+      .string(requiredMessage('Password'))
+      .min(8, {
+        message: 'Password must be at least 8 character',
+      })
+      .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+      .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
   });
 
   static readonly LOGIN: ZodType = z.object({
     email: z.string(requiredMessage('Email')).min(1).email(),
-    password: z.string(requiredMessage('Password')).min(8, {
-      message: 'Password must be at least 8 character',
-    }),
+    password: z
+      .string(requiredMessage('Password'))
+      .min(8, {
+        message: 'Password must be at least 8 character',
+      })
+      .min(8, {
+        message: 'Password must be at least 8 character',
+      })
+      .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+      .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
   });
 }
