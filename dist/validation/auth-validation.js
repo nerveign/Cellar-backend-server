@@ -41,14 +41,7 @@ AuthValidation.REGISTER = zod_1.default.object({
 });
 AuthValidation.LOGIN = zod_1.default.object({
     email: zod_1.default.string((0, helper_1.requiredMessage)('Email')).min(1).email(),
-    password: zod_1.default
-        .string((0, helper_1.requiredMessage)('Password'))
-        .min(8, {
+    password: zod_1.default.string((0, helper_1.requiredMessage)('Password')).min(8, {
         message: 'Password must be at least 8 character',
-    })
-        .min(8, {
-        message: 'Password must be at least 8 character',
-    })
-        .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-        .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
+    }),
 });
