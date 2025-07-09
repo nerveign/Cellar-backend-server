@@ -11,8 +11,8 @@ exports.config = {
     mongoUri: process.env.DATABASE_URL || 'mongodb://localhost:27017/cellar-db',
     env: process.env.NODE_ENV || 'development',
     jwt: {
-        secret: process.env.JWT_SECRET || 'devsecrettest',
-        expiresIn: process.env.JWT_EXPIRES,
+        secret: process.env.JWT_SECRET || 'rahasia',
+        expiresIn: process.env.JWT_EXPIRES_IN,
     },
     cookiesOption: {
         httpOnly: true,

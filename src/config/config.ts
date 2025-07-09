@@ -8,7 +8,7 @@ export const config = {
     mongoUri: process.env.DATABASE_URL || 'mongodb://localhost:27017/cellar-db',
     env: process.env.NODE_ENV || 'development',
     jwt: {
-        secret: (process.env.JWT_SECRET as string) || 'devsecrettest',
+        secret: (process.env.JWT_SECRET as string) || 'rahasia',
         expiresIn: process.env.JWT_EXPIRES_IN as any,
     },
     cookiesOption: {
