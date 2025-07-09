@@ -6,5 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const auth_route_1 = __importDefault(require("./auth-route"));
 const mainRouter = (0, express_1.Router)();
-mainRouter.use('/auth', auth_route_1.default);
+mainRouter.use('/api/v1/', auth_route_1.default);
 exports.default = mainRouter;

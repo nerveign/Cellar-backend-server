@@ -9,7 +9,7 @@ export const config = {
     env: process.env.NODE_ENV || 'development',
     jwt: {
         secret: (process.env.JWT_SECRET as string) || 'devsecrettest',
-        expiresIn: process.env.JWT_EXPIRES as any,
+        expiresIn: process.env.JWT_EXPIRES_IN as any,
     },
     cookiesOption: {
         httpOnly: true,
