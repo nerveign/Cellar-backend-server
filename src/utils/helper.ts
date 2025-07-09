@@ -15,6 +15,7 @@ export const generateToken = (userId: string, res: Response) => {
   return token;
 };
 
+// For zod error
 export const requiredMessage = (text: string) => {
   return { required_error: `${text} is required` };
 };
