@@ -4,11 +4,11 @@ import {
     RegisterUserRequest,
     UserResponse,
 } from '../types/user-type';
-import { UserService } from '../service/user-service';
+import { AuthService } from '../service/auth-service';
 import { generateToken } from '../utils/generateToken';
 import { config } from '../config/config';
 
-export class UserController {
+export class AuthController {
     static async register(
         req: Request,
         res: Response,
@@ -17,7 +17,7 @@ export class UserController {
         try {
             const request: RegisterUserRequest =
                 req.body as RegisterUserRequest;
-            const response: UserResponse = await UserService.register(request);
+            const response: UserResponse = await AuthService.register(request);
 
             res.status(200).json({
                 data: response,
@@ -34,7 +34,7 @@ export class UserController {
     ): Promise<void> {
         try {
             const request: LoginUserRequest = req.body as LoginUserRequest;
-            const response: UserResponse = await UserService.login(request);
+            const response: UserResponse = await AuthService.login(request);
 
             if (response) {
                 generateToken(response._id, res);

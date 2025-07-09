@@ -11,7 +11,7 @@ import { Response } from 'express';
 import { Validation } from '../validation/validation';
 import { AuthValidation } from '../validation/auth-validation';
 
-export class UserService {
+export class AuthService {
     static async register(request: RegisterUserRequest): Promise<UserResponse> {
         const registerRequest: RegisterUserRequest = Validation.validate(
             AuthValidation.REGISTER,
