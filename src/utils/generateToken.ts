@@ -5,7 +5,9 @@ import { config } from '../config/config';
 
 export const generateToken = (userId: string, res: Response) => {
     const secret = process.env.JWT_SECRET as string;
-    const token = jwt.sign({ userId }, secret, { expiresIn: config.jwt.expiresIn });
+    const token = jwt.sign({ userId }, secret, {
+        expiresIn: config.jwt.expiresIn,
+    });
 
     res.cookie('jwt', token, {
         ...config.cookiesOption,
