@@ -1,6 +1,14 @@
 import { Request } from 'express';
 import { IUser } from '../models/user-model';
 
+export type UserType = {
+    id: string;
+    username: string;
+    fullName: string;
+    email: string;
+    profileImg: string;
+};
+
 export type RegisterUserRequest = {
     username: string;
     fullName: string;
@@ -38,5 +46,5 @@ export const toUserResponse = (user: IUser): UserResponse => {
 };
 
 export interface AuthUserRequest extends Request {
-    userId?: string
+    userId?: string;
 }
