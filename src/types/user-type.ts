@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import { IUser } from '../models/user-model';
 
 export type RegisterUserRequest = {
@@ -35,3 +36,7 @@ export const toUserResponse = (user: IUser): UserResponse => {
         fullName: user.fullName,
     };
 };
+
+export interface AuthUserRequest extends Request {
+    userId?: string
+}
