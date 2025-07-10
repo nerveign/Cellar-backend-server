@@ -1,7 +1,6 @@
 import { NextFunction, Response } from 'express';
 import { AuthUserRequest, UserType } from '../types/user-type';
-import { ResponseError } from '../error/response-error';
-import { User } from '../models/user-model';
+import { UserService } from '../service/user-service';
 
 export class UserController {
     static async getProfile(
@@ -10,20 +9,7 @@ export class UserController {
         next: NextFunction
     ): Promise<void> {
         try {
-            const user = await User.findById(req.userId).where('-password');
-
-            if (!user) {
-                throw new ResponseError(404, 'User not found');
-            }
-
-            const response: UserType = {
-                id: user.id,
-                username: user.username,
-                fullName: user.fullName,
-                profileImg: user.profileImg,
-                email: user.email,
-            };
-
+            const response: UserType = await UserService.getUser(req);
             res.status(200).json({
                 data: response,
             });
