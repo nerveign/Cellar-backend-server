@@ -16,7 +16,7 @@ app.use(cors());
 app.use(cookieParser());
 
 // Route
-app.use('/api/v1', mainRouter);
+app.use(mainRouter);
 
 // Error Handler
 app.use(errorMiddleware);
