@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 
 import { ResponseError } from '../error/response-error';
@@ -16,11 +16,12 @@ export const protectedRoute = (
     }
 
     try {
-        const decoded = jwt.verify(token, config.jwt.secret) as { userId: string };
+        const decoded = jwt.verify(token, config.jwt.secret) as {
+            userId: string;
+        };
         req.userId = decoded.userId;
         next();
-    }
-    catch (error) {
+    } catch (error) {
         next(error);
     }
 };

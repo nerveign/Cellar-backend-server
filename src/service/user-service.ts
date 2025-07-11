@@ -29,4 +29,6 @@ export class UserService {
 
         await User.deleteOne({ _id: user.id });
     }
+
+    static async updateUserProfileImage(req: AuthUserRequest): Promise<any> {}
 }
