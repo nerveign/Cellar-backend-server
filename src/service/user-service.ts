@@ -1,5 +1,4 @@
-import { Response } from 'express';
-import { AuthUserRequest, UserType } from '../types/user-type';
+import { AuthUserRequest, UserResponse, UserType } from '../types/user-type';
 import { ResponseError } from '../error/response-error';
 import { User } from '../models/user-model';
 
