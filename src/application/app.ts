@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import mainRouter from '../routes';
 import { connectDB } from '../config/database';
 import { errorMiddleware } from '../middlewares/error-middleware';
+import { notFoundHandler } from '../middlewares/errorNotFound-middleware';
 
 export const app = express();
 connectDB();
@@ -20,3 +21,6 @@ app.use('/api/v1', mainRouter);
 
 // Error Handler
 app.use(errorMiddleware);
+
+// 404 Handler
+app.use(notFoundHandler);

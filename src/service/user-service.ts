@@ -1,6 +1,7 @@
-import { AuthUserRequest, UserResponse, UserType } from '../types/user-type';
+import { AuthUserRequest, UserType } from '../types/user-type';
 import { ResponseError } from '../error/response-error';
 import { User } from '../models/user-model';
+import { Request } from 'express';
 
 export class UserService {
     static async getUser(req: AuthUserRequest): Promise<UserType> {
@@ -28,4 +29,6 @@ export class UserService {
 
         await User.deleteOne({ _id: user.id });
     }
+
+    static async updateUserProfileImage(req: Request): Promise<any> {}
 }
