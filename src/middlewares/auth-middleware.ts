@@ -12,7 +12,7 @@ export const protectedRoute = (
 ) => {
     const token = req.cookies.jwt;
     if (!token) {
-        return next(new ResponseError(401, 'Unauthorized, token unavailable'));
+        return next(new ResponseError(401, 'Unauthorized'));
     }
 
     try {
