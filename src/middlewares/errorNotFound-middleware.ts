@@ -6,6 +6,6 @@ export const notFoundHandler = (
     next: NextFunction
 ) => {
     res.status(404).json({
-        message: 'Service not found',
+        errors: 'Service not found',
     });
 };
