@@ -17,4 +17,19 @@ export class UserController {
             next(err);
         }
     }
+
+    static async deleteProfile(
+        req: AuthUserRequest,
+        res: Response,
+        next: NextFunction
+    ): Promise<void> {
+        try {
+            await UserService.deleteUser(req);
+            res.clearCookie('jwt').status(200).json({
+                message: 'Delete account successfully',
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
 }

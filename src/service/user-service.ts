@@ -19,4 +19,14 @@ export class UserService {
             email: user.email,
         };
     }
+
+    static async deleteUser(req: AuthUserRequest): Promise<any> {
+        const user = await User.findById(req.userId);
+
+        if (!user) {
+            throw new ResponseError(404, 'User not found');
+        }
+
+        await User.deleteOne({ _id: user.id });
+    }
 }
