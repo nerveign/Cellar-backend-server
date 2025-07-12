@@ -8,11 +8,11 @@ Request Body :
 
 ```jsonc
 {
-  "username": "Tiffanxaa",
-  "fullName": "Xazza",
-  "email": "tiffanxaa@gmail.com",
-  "profileImg": "xaa.jpg",  //optional
-  "password": "tiffanxaa192"
+    "username": "Tiffanxaa",
+    "fullName": "Xazza",
+    "email": "tiffanxaa@gmail.com",
+    "profileImg": "xaa.jpg", //optional
+    "password": "tiffanxaa192",
 }
 ```
 
@@ -20,11 +20,11 @@ Response Body (Success):
 
 ```json
 {
-  "data": {
-    "_id": "192301123493430100",
-    "username": "Tiffanxaa",
-    "fullName": "Xazza"
-  }
+    "data": {
+        "_id": "192301123493430100",
+        "username": "Tiffanxaa",
+        "fullName": "Xazza"
+    }
 }
 ```
 
@@ -32,7 +32,7 @@ Response Body (Failed):
 
 ```json
 {
-  "errors": "All field must not blank"
+    "errors": "All field must not blank"
 }
 ```
 
@@ -44,11 +44,11 @@ Request Body :
 
 ```json
 {
-  "data": {
-    "_id": "192301123493430100",
-    "username": "Tiffanxaa",
-    "fullName": "Xazza"
-  }
+    "data": {
+        "_id": "192301123493430100",
+        "username": "Tiffanxaa",
+        "fullName": "Xazza"
+    }
 }
 ```
 
@@ -56,11 +56,11 @@ Response Body (Success):
 
 ```json
 {
-  "data": {
-    "_id": "192301123493430100",
-    "username": "Tiffanxaa",
-    "fullName": "Xazza"
-  }
+    "data": {
+        "_id": "192301123493430100",
+        "username": "Tiffanxaa",
+        "fullName": "Xazza"
+    }
 }
 ```
 
@@ -68,13 +68,13 @@ Response Body (Failed):
 
 ```json
 {
-  "errors": "Email or Password is wrong"
+    "errors": "Email or Password is wrong"
 }
 ```
 
 ## Get User
 
-Endpoint: GET /api/v1/user/current
+Endpoint: GET /api/v1/profile
 
 Request Header:
 
@@ -84,11 +84,11 @@ Response Body (Success):
 
 ```json
 {
-  "data": {
-    "_id": "192301123493430100",
-    "username": "Tiffanxaa",
-    "fullName": "Xazza"
-  }
+    "data": {
+        "_id": "192301123493430100",
+        "username": "Tiffanxaa",
+        "fullName": "Xazza"
+    }
 }
 ```
 
@@ -96,13 +96,13 @@ Response Body (Failed):
 
 ```json
 {
-  "errors": "Unauthorized"
+    "errors": "Unauthorized"
 }
 ```
 
 ## Update User
 
-Endpoint : PATCH/PUT /api/v1/user/current
+Endpoint : PATCH/PUT /api/v1/profile/update
 
 Request Header:
 
@@ -112,11 +112,11 @@ Request Body (Success):
 
 ```json
 {
-  "data": {
-    "_id": "192301123493430100",
-    "username": "Tiffanxaa",
-    "fullName": "Xazza"
-  }
+    "data": {
+        "_id": "192301123493430100",
+        "username": "Tiffanxaa",
+        "fullName": "Xazza"
+    }
 }
 ```
 
@@ -124,7 +124,7 @@ Response Body (Failed):
 
 ```json
 {
-  "errors": "Unauthorized"
+    "errors": "Unauthorized"
 }
 ```
 
@@ -140,7 +140,7 @@ Response Body (Success):
 
 ```json
 {
-  "data": "Delete account successfully"
+    "data": "Delete account successfully"
 }
 ```
 
@@ -148,6 +148,6 @@ Response Body (Failed):
 
 ```json
 {
-  "errors": "Unauthorized"
+    "errors": "Unauthorized"
 }
 ```
