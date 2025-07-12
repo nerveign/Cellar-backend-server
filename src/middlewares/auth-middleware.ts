@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { ResponseError } from '../error/response-error';
 import { config } from '../config/config';
-import { AuthUserRequest } from '../types/user-type';
+import { AuthUserRequest, JwtVerify } from '../types/user-type';
 
 export const protectedRoute = (
     req: AuthUserRequest,
@@ -16,9 +16,7 @@ export const protectedRoute = (
     }
 
     try {
-        const decoded = jwt.verify(token, config.jwt.secret) as {
-            userId: string;
-        };
+        const decoded = jwt.verify(token, config.jwt.secret) as JwtVerify;
         req.userId = decoded.userId;
         next();
     } catch (error) {

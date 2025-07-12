@@ -45,6 +45,10 @@ export const toUserResponse = (user: IUser): UserResponse => {
     };
 };
 
+export type JwtVerify = {
+    userId: string;
+};
+
 export interface AuthUserRequest extends Request {
     userId?: string;
 }
