@@ -40,7 +40,12 @@ export class AuthValidation {
     });
 
     static readonly LOGIN: ZodType = z.object({
-        email: z.string(requiredMessage('Email')).min(1).email(),
+        email: z
+            .string(requiredMessage('Email'))
+            .min(5, {
+                message: 'Email must be at least 5 character',
+            })
+            .email(),
         password: z.string(requiredMessage('Password')).min(8, {
             message: 'Password must be at least 8 character',
         }),

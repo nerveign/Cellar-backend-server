@@ -1,6 +1,5 @@
 import { app } from './application/app';
 import { logger } from './application/logging';
-import cloudinary from './config/cloudinary';
 import { config } from './config/config';
 
 app.listen(config.port, () => {
