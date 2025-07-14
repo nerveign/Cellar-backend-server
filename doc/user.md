@@ -8,11 +8,10 @@ Request Body :
 
 ```jsonc
 {
-    "username": "Tiffanxaa",
-    "fullName": "Xazza",
-    "email": "tiffanxaa@gmail.com",
-    "profileImg": "xaa.jpg", //optional
-    "password": "tiffanxaa192",
+    "username": "holyservant",
+    "fullName": "Holy Springer",
+    "email": "holyservant@gmail.com",
+    "password": "Ganteng123!",
 }
 ```
 
@@ -21,9 +20,9 @@ Response Body (Success):
 ```json
 {
     "data": {
-        "_id": "192301123493430100",
-        "username": "Tiffanxaa",
-        "fullName": "Xazza"
+        "_id": "68758fad361cc738a2d05138",
+        "username": "holyservant",
+        "fullName": "Holy Springer"
     }
 }
 ```
@@ -32,7 +31,7 @@ Response Body (Failed):
 
 ```json
 {
-    "errors": "All field must not blank"
+    "message": "Username must be at least 1 character"
 }
 ```
 
@@ -44,11 +43,8 @@ Request Body :
 
 ```json
 {
-    "data": {
-        "_id": "192301123493430100",
-        "username": "Tiffanxaa",
-        "fullName": "Xazza"
-    }
+    "email": "holyservant@gmail.com",
+    "password": "Ganteng123!"
 }
 ```
 
@@ -57,9 +53,9 @@ Response Body (Success):
 ```json
 {
     "data": {
-        "_id": "192301123493430100",
-        "username": "Tiffanxaa",
-        "fullName": "Xazza"
+        "_id": "68758fad361cc738a2d05138",
+        "username": "holyservant",
+        "fullName": "Holy Springer"
     }
 }
 ```
@@ -68,7 +64,7 @@ Response Body (Failed):
 
 ```json
 {
-    "errors": "Email or Password is wrong"
+    "message": "Email or Password is wrong"
 }
 ```
 
@@ -85,11 +81,11 @@ Response Body (Success):
 ```json
 {
     "data": {
-        "id": "6874b77717aab14c2d8d13cf",
-        "username": "tiffanxaa",
-        "fullName": "Xena Ananda Azzahwa",
+        "id": "68758fad361cc738a2d05138",
+        "username": "holyservant",
+        "fullName": "Holy Springer",
         "profileImg": "",
-        "email": "tiffanxaa@gmail.com"
+        "email": "holyservant@gmail.com"
     }
 }
 ```
@@ -116,8 +112,8 @@ Request Body (Success):
 {
     "data": {
         "_id": "192301123493430100",
-        "username": "Tiffanxaa",
-        "fullName": "Xazza"
+        "username": "holyservant",
+        "fullName": "Holy Springer"
     }
 }
 ```
@@ -132,7 +128,7 @@ Response Body (Failed):
 
 ## Delete User
 
-Endpoint: DELETE /api/v1/user/profile
+Endpoint: DELETE /api/v1/user/profile/delete
 
 Request Header:
 
