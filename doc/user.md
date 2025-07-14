@@ -85,9 +85,11 @@ Response Body (Success):
 ```json
 {
     "data": {
-        "_id": "192301123493430100",
-        "username": "Tiffanxaa",
-        "fullName": "Xazza"
+        "id": "6874b77717aab14c2d8d13cf",
+        "username": "tiffanxaa",
+        "fullName": "Xena Ananda Azzahwa",
+        "profileImg": "",
+        "email": "tiffanxaa@gmail.com"
     }
 }
 ```
