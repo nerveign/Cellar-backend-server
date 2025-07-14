@@ -74,7 +74,7 @@ Response Body (Failed):
 
 ## Get User
 
-Endpoint: GET /api/v1/profile
+Endpoint: GET /api/v1/user/profile
 
 Request Header:
 
@@ -102,7 +102,7 @@ Response Body (Failed):
 
 ## Update User
 
-Endpoint : PATCH/PUT /api/v1/profile/update
+Endpoint : PATCH/PUT /api/v1/user/profile/update
 
 Request Header:
 
@@ -128,9 +128,9 @@ Response Body (Failed):
 }
 ```
 
-## Logout User
+## Delete User
 
-Endpoint : DELETE /api/v1/logout
+Endpoint: DELETE /api/v1/user/profile
 
 Request Header:
 
@@ -140,7 +140,31 @@ Response Body (Success):
 
 ```json
 {
-    "data": "Delete account successfully"
+    "message": "Delete account successfully"
+}
+```
+
+Response Body (Failed):
+
+```json
+{
+    "errors": "Unauthorized"
+}
+```
+
+## Logout User
+
+Endpoint : POST /api/v1/logout
+
+Request Header:
+
+- jwt : cookie token
+
+Response Body (Success):
+
+```json
+{
+    "message": "Logout account successfully"
 }
 ```
 
