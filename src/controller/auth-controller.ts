@@ -51,6 +51,6 @@ export class AuthController {
     static logout(req: Request, res: Response, next: NextFunction) {
         res.clearCookie('jwt', config.cookiesOption)
             .status(200)
-            .json({ message: 'Logout succesful' });
+            .json({ message: 'Logout account succesfully' });
     }
 }
