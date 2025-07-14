@@ -1,10 +1,10 @@
-import { AuthUserRequest, UserType } from '../types/user-type';
+import { AuthUserRequest, GetUserType } from '../types/user-type';
 import { ResponseError } from '../error/response-error';
 import { User } from '../models/user-model';
 import { Request } from 'express';
 
 export class UserService {
-    static async getUser(req: AuthUserRequest): Promise<UserType> {
+    static async getUser(req: AuthUserRequest): Promise<GetUserType> {
         const user = await User.findById(req.userId).where('-password');
 
         if (!user) {

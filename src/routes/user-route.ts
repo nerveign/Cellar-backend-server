@@ -4,11 +4,7 @@ import { UserController } from '../controller/user-controller';
 
 const userRouter = Router();
 
-userRouter.get('/user/profile', protectedRoute, UserController.getProfile);
-userRouter.delete(
-    '/user/profile',
-    protectedRoute,
-    UserController.deleteProfile
-);
+userRouter.get('/user/profile', protectedRoute, UserController.getUser);
+userRouter.delete('/user/profile', protectedRoute, UserController.deleteUser);
 
 export default userRouter;
