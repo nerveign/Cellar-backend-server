@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { IUser } from '../models/user-model';
 
-export type UserType = {
+export type GetUserType = {
     id: string;
     username: string;
     fullName: string;
