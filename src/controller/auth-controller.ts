@@ -6,7 +6,6 @@ import {
 } from '../types/user-type';
 import { AuthService } from '../service/auth-service';
 import { generateToken } from '../utils/generateToken';
-import { config } from '../config/config';
 
 export class AuthController {
     static async register(
