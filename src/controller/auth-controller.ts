@@ -1,11 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
 import {
+    AuthUserRequest,
     LoginUserRequest,
     RegisterUserRequest,
     UserResponse,
 } from '../types/user-type';
 import { AuthService } from '../service/auth-service';
 import { generateToken } from '../utils/generateToken';
+import { ResponseError } from '../error/response-error';
 
 export class AuthController {
     static async register(
@@ -49,6 +51,13 @@ export class AuthController {
 
     static logout(req: Request, res: Response, next: NextFunction) {
         try {
+            if (!req.cookies.jwt) {
+                throw new ResponseError(
+                    401,
+                    'Unauthorized, you are not logged in'
+                );
+            }
+
             AuthService.logout(res);
         } catch (error) {
             next(error);
