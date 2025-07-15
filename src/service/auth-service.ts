@@ -10,6 +10,7 @@ import {
 import { Response } from 'express';
 import { Validation } from '../validation/validation';
 import { AuthValidation } from '../validation/auth-validation';
+import { config } from '../config/config';
 
 export class AuthService {
     static async register(request: RegisterUserRequest): Promise<UserResponse> {
@@ -64,7 +65,10 @@ export class AuthService {
         return toUserResponse(user);
     }
 
-    static logout(res: Response): void {
-        res.cookie('jwt', '', { maxAge: 0 });
+    static logout(response: Response) {
+        response
+            .clearCookie('jwt', config.cookiesOption)
+            .status(200)
+            .json({ message: 'Logout account succesfully' });
     }
 }

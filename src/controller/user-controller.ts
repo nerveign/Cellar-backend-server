@@ -13,8 +13,8 @@ export class UserController {
             res.status(200).json({
                 data: response,
             });
-        } catch (err) {
-            next(err);
+        } catch (error) {
+            next(error);
         }
     }
 
@@ -28,8 +28,8 @@ export class UserController {
             res.clearCookie('jwt').status(200).json({
                 message: 'Delete account successfully',
             });
-        } catch (err) {
-            next(err);
+        } catch (error) {
+            next(error);
         }
     }
 }
