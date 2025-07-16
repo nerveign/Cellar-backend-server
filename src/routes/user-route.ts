@@ -10,5 +10,10 @@ userRouter.delete(
     protectedRoute,
     UserController.deleteUser
 );
+userRouter.put(
+    '/user/profile/update',
+    protectedRoute,
+    UserController.updateUser
+);
 
 export default userRouter;
