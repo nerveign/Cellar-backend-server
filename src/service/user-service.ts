@@ -47,10 +47,9 @@ export class UserService {
 
         const { username, fullName, email, profileImg } = updateRequest;
 
-        if (!(user.username === username || user.email === email)){
-            await checkUserExist(username as string, email as string)
+        if (!(user.username === username || user.email === email)) {
+            await checkUserExist(username as string, email as string);
         }
-
 
         await User.updateOne(
             { _id: req.userId },
