@@ -1,13 +1,12 @@
 import {
     AuthUserRequest,
     GetUserType,
-    toUserResponse,
     UpdateUserRequest,
     UserResponse,
 } from '../types/user-type';
 import { ResponseError } from '../error/response-error';
 import { IUser, User } from '../models/user-model';
-import { string } from 'zod';
+import { checkUserExist } from '../utils/helper';
 
 export class UserService {
     static async getUser(req: AuthUserRequest): Promise<GetUserType> {
@@ -48,17 +47,10 @@ export class UserService {
 
         const { username, fullName, email, profileImg } = updateRequest;
 
-        const checkUsername = await User.findOne({ username });
-        const checkEmail = await User.findOne({ email });
-
-        if (checkUsername || checkEmail) {
-            if (!(user.username === username || user.email === email)) {
-                throw new ResponseError(
-                    400,
-                    'Username or Email already exists'
-                );
-            }
+        if (!(user.username === username || user.email === email)){
+            await checkUserExist(username as string, email as string)
         }
+
 
         await User.updateOne(
             { _id: req.userId },
