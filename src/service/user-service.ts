@@ -7,6 +7,7 @@ import {
 import { ResponseError } from '../error/response-error';
 import { IUser, User } from '../models/user-model';
 import { checkUserExist } from '../utils/helper';
+import { cloudinaryStorage } from '../config/cloudinary';
 
 export class UserService {
     static async getUser(req: AuthUserRequest): Promise<GetUserType> {
@@ -52,6 +53,8 @@ export class UserService {
             await checkUserExist(username as string, email as string);
         }
 
+        const result = await cloudinaryStorage(req.file?.path);
+
         await User.updateOne(
             { _id: req.userId },
             {
@@ -59,7 +62,7 @@ export class UserService {
                     username,
                     fullName,
                     email,
-                    profileImg,
+                    profileImg: result.secure_url,
                 },
             },
             {

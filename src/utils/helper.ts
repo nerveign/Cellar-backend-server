@@ -15,3 +15,16 @@ export const checkUserExist = async (username: string, email: string) => {
         throw new ResponseError(400, 'Username or Email already exists');
     }
 };
+
+// File type for upload image
+export const imageExtensions = (extension: string) => {
+    const extensions = [
+        'image/png',
+        'image/jpeg',
+        'image/jpg',
+        'image/gif',
+        'image/svg',
+        'image/webp',
+    ];
+    return extensions.includes(extension);
+};
