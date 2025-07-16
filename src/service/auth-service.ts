@@ -19,8 +19,8 @@ export class AuthService {
             AuthValidation.REGISTER,
             request
         ) as RegisterUserRequest;
-        let { username, fullName, email, password } = registerRequest;
-        username = username.toLowerCase();
+        const { fullName, email, password } = registerRequest;
+        const username = registerRequest.username?.toLowerCase();
 
         await checkUserExist(username, email);
 

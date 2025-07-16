@@ -45,7 +45,8 @@ export class UserService {
             throw new ResponseError(404, 'User not found');
         }
 
-        const { username, fullName, email, profileImg } = updateRequest;
+        const { fullName, email, profileImg } = updateRequest;
+        const username = updateRequest.username?.toLowerCase();
 
         if (!(user.username === username || user.email === email)) {
             await checkUserExist(username as string, email as string);
