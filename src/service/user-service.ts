@@ -53,6 +53,7 @@ export class UserService {
             await checkUserExist(username as string, email as string);
         }
 
+        // if user not update the profile image
         if (!req.file) {
             await User.updateOne(
                 { _id: req.userId },
