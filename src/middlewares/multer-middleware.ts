@@ -10,7 +10,7 @@ const upload = multer({
             cb(null, `${randomString}.${file.mimetype.split('/')[1]}`);
         },
     }),
-    fileFilter: (req, file, cb) => {
+    fileFilter: (req: Request, file, cb) => {
         if (!imageExtensions(file.mimetype)) {
             return cb(
                 new ResponseError(

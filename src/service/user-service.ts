@@ -53,6 +53,28 @@ export class UserService {
             await checkUserExist(username as string, email as string);
         }
 
+        if (!req.file) {
+            await User.updateOne(
+                { _id: req.userId },
+                {
+                    $set: {
+                        username,
+                        fullName,
+                        email,
+                    },
+                },
+                {
+                    upsert: false,
+                }
+            );
+
+            return {
+                _id: user.id,
+                username: username as string,
+                fullName: fullName as string,
+            };
+        }
+
         const result = await cloudinaryStorage(req.file?.path);
 
         await User.updateOne(
@@ -62,7 +84,7 @@ export class UserService {
                     username,
                     fullName,
                     email,
-                    profileImg: result.secure_url,
+                    profileImg: result?.secure_url,
                 },
             },
             {
