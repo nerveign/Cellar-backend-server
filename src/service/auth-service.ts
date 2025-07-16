@@ -11,6 +11,7 @@ import { Response } from 'express';
 import { Validation } from '../validation/validation';
 import { AuthValidation } from '../validation/auth-validation';
 import { config } from '../config/config';
+import { checkUserExist } from '../utils/helper';
 
 export class AuthService {
     static async register(request: RegisterUserRequest): Promise<UserResponse> {
@@ -18,15 +19,10 @@ export class AuthService {
             AuthValidation.REGISTER,
             request
         ) as RegisterUserRequest;
-        let { username, fullName, email, password } = registerRequest;
-        username = username.toLowerCase();
+        const { fullName, email, password } = registerRequest;
+        const username = registerRequest.username?.toLowerCase();
 
-        const checkUsername = await User.findOne({ username });
-        const checkEmail = await User.findOne({ email });
-
-        if (checkUsername || checkEmail) {
-            throw new ResponseError(400, 'Username or Email already exists');
-        }
+        await checkUserExist(username, email);
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);

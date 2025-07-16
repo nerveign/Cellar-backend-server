@@ -1,5 +1,10 @@
 import { NextFunction, Response } from 'express';
-import { AuthUserRequest, GetUserType } from '../types/user-type';
+import {
+    AuthUserRequest,
+    GetUserType,
+    UpdateUserRequest,
+    UserResponse,
+} from '../types/user-type';
 import { UserService } from '../service/user-service';
 
 export class UserController {
@@ -27,6 +32,25 @@ export class UserController {
             await UserService.deleteUser(req);
             res.clearCookie('jwt').status(200).json({
                 message: 'Delete account successfully',
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    static async updateUser(
+        req: AuthUserRequest,
+        res: Response,
+        next: NextFunction
+    ): Promise<void> {
+        try {
+            const request: UpdateUserRequest = req.body as UpdateUserRequest;
+            const response: UserResponse = await UserService.updateUser(
+                req,
+                request
+            );
+            res.status(200).json({
+                data: response,
             });
         } catch (error) {
             next(error);

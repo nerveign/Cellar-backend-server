@@ -170,6 +170,6 @@ Response Body (Failed):
 
 ```json
 {
-    "errors": "Unauthorized"
+    "errors": "Unauthorized, you are not logged in"
 }
 ```

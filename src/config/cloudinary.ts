@@ -9,4 +9,14 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export default cloudinary;
+export const cloudinaryStorage = async (filename: any) => {
+    return await cloudinary.uploader.upload(filename, {
+        eager_async: true,
+        resource_type: 'auto',
+        folder: 'user-profile-image',
+    });
+};
+
+export const cloudinaryDestroy = async (publicId: string) => {
+    return await cloudinary.uploader.destroy(publicId);
+};
