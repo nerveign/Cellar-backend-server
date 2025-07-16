@@ -55,7 +55,7 @@ export class UserService {
             { _id: req.userId },
             {
                 $set: {
-                    username,
+                    username: username?.toLowerCase(),
                     fullName,
                     email,
                     profileImg,
