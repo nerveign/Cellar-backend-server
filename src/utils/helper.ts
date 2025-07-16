@@ -6,6 +6,7 @@ export const requiredMessage = (text: string) => {
     return { required_error: `${text} is required` };
 };
 
+// check user exist by username and email
 export const checkUserExist = async (username: string, email: string) => {
     const checkUsername = await User.findOne({ username });
     const checkEmail = await User.findOne({ email });
