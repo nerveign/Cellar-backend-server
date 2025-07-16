@@ -1,6 +1,7 @@
 import {
     AuthUserRequest,
     GetUserType,
+    toUserResponse,
     UpdateUserRequest,
     UserResponse,
 } from '../types/user-type';
