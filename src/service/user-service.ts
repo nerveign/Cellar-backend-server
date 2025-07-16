@@ -46,7 +46,7 @@ export class UserService {
             throw new ResponseError(404, 'User not found');
         }
 
-        const { fullName, email, profileImg } = updateRequest;
+        const { fullName, email } = updateRequest;
         const username = updateRequest.username?.toLowerCase();
 
         if (!(user.username === username || user.email === email)) {
