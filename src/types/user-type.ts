@@ -27,7 +27,6 @@ export type UpdateUserRequest = {
     fullName?: string;
     email?: string;
     profileImg?: any;
-    password?: string;
 };
 
 export type UserResponse = {
