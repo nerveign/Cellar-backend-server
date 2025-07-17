@@ -1,7 +1,6 @@
 import {
     AuthUserRequest,
     GetUserType,
-    toUserResponse,
     UpdateUserRequest,
     UserResponse,
 } from '../types/user-type';
@@ -22,8 +21,8 @@ export class UserService {
             id: user.id,
             username: user.username,
             fullName: user.fullName,
-            profileImg: user.profileImg,
             email: user.email,
+            profileImg: user.profileImg,
         };
     }
 
