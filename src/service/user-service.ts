@@ -1,6 +1,7 @@
 import {
     AuthUserRequest,
-    GetUserType,
+    GetUserResponse,
+    toGetUserResponse,
     toUserResponse,
     UpdateUserRequest,
     UserResponse,
@@ -11,24 +12,18 @@ import { checkUserExist } from '../utils/helper';
 import { cloudinaryStorage } from '../config/cloudinary';
 
 export class UserService {
-    static async getUser(req: AuthUserRequest): Promise<GetUserType> {
-        const user = await User.findById(req.userId).where('-password');
+    static async getUser(req: AuthUserRequest): Promise<GetUserResponse> {
+        const user: IUser = (await User.findById(req.userId)) as IUser;
 
         if (!user) {
             throw new ResponseError(404, 'User not found');
         }
 
-        return {
-            id: user.id,
-            username: user.username,
-            fullName: user.fullName,
-            email: user.email,
-            profileImg: user.profileImg,
-        };
+        return toGetUserResponse(user);
     }
 
     static async deleteUser(req: AuthUserRequest): Promise<any> {
-        const user = await User.findById(req.userId);
+        const user: IUser = (await User.findById(req.userId)) as IUser;
 
         if (!user) {
             throw new ResponseError(404, 'User not found');
