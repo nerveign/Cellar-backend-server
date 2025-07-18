@@ -50,4 +50,32 @@ export class AuthValidation {
             message: 'Password must be at least 8 character',
         }),
     });
+
+    static readonly UPDATE: ZodType = z.object({
+        username: z
+            .string(requiredMessage('Username'))
+            .min(1, {
+                message: 'Username must be at least 1 character',
+            })
+            .max(100)
+            .refine((value) => !value.includes(' '), {
+                message: 'Username cannot contain spaces',
+            })
+            .optional(),
+        fullName: z
+            .string(requiredMessage('Fullname'))
+            .min(1, {
+                message: 'Fullname must be at least 1 character',
+            })
+            .max(100)
+            .optional(),
+        email: z
+            .string(requiredMessage('Email'))
+            .min(5, {
+                message: 'Email must be at least 5 character',
+            })
+            .email()
+            .optional(),
+        profileImg: z.any().optional(),
+    });
 }
