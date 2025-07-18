@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 import {
     AuthUserRequest,
-    GetUserType,
+    GetUserResponse,
     UpdateUserRequest,
     UserResponse,
 } from '../types/user-type';
@@ -14,7 +14,7 @@ export class UserController {
         next: NextFunction
     ): Promise<void> {
         try {
-            const response: GetUserType = await UserService.getUser(req);
+            const response: GetUserResponse = await UserService.getUser(req);
             res.status(200).json({
                 data: response,
             });

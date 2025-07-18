@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { IUser } from '../models/user-model';
 
-export type GetUserType = {
+export type GetUserResponse = {
     id: string;
     username: string;
     fullName: string;
@@ -41,6 +41,16 @@ export const toUserResponse = (user: IUser): UserResponse => {
         _id: user._id as string,
         username: user.username,
         fullName: user.fullName,
+    };
+};
+
+export const toGetUserResponse = (user: IUser): GetUserResponse => {
+    return {
+        id: user._id as string,
+        username: user.username,
+        fullName: user.fullName,
+        email: user.email,
+        profileImg: user.profileImg,
     };
 };
 
