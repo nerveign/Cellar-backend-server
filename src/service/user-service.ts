@@ -13,23 +13,25 @@ import { cloudinaryStorage } from '../config/cloudinary';
 import { Validation } from '../validation/validation';
 import { AuthValidation } from '../validation/auth-validation';
 
+const getUserData = async (userId?: string): Promise<IUser> => {
+    const user: IUser = (await User.findById(userId)) as IUser;
+
+    if (!user) {
+        throw new ResponseError(404, 'User not found');
+    }
+
+    return user;
+};
+
 export class UserService {
     static async getUser(req: AuthUserRequest): Promise<GetUserResponse> {
-        const user: IUser = (await User.findById(req.userId)) as IUser;
-
-        if (!user) {
-            throw new ResponseError(404, 'User not found');
-        }
+        const user: IUser = await getUserData(req.userId);
 
         return toGetUserResponse(user);
     }
 
     static async deleteUser(req: AuthUserRequest): Promise<any> {
-        const user: IUser = (await User.findById(req.userId)) as IUser;
-
-        if (!user) {
-            throw new ResponseError(404, 'User not found');
-        }
+        const user: IUser = await getUserData(req.userId);
 
         await User.deleteOne({ _id: user.id });
     }
@@ -38,11 +40,7 @@ export class UserService {
         req: AuthUserRequest,
         updateRequest: UpdateUserRequest
     ): Promise<UserResponse> {
-        const user: IUser = (await User.findById(req.userId)) as IUser;
-
-        if (!user) {
-            throw new ResponseError(404, 'User not found');
-        }
+        await getUserData(req.userId);
 
         const updateUserRequest: UpdateUserRequest = Validation.validate(
             AuthValidation.UPDATE,
