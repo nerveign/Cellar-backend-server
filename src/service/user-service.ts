@@ -59,6 +59,7 @@ export class UserService {
                 { username, fullName, email },
                 { upsert: false, returnDocument: 'after' }
             )) as IUser;
+
             return toUserResponse(updateRequestResponse);
         }
 
