@@ -40,7 +40,7 @@ export class UserService {
     static async updateUser(
         req: AuthUserRequest,
         updateRequest: UpdateUserRequest
-    ) {
+    ): Promise<UserResponse> {
         const user: IUser = (await User.findById(req.userId)) as IUser;
 
         if (!user) {
