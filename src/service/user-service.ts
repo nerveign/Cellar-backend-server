@@ -10,6 +10,8 @@ import { ResponseError } from '../error/response-error';
 import { IUser, User } from '../models/user-model';
 import { checkUserExist } from '../utils/helper';
 import { cloudinaryStorage } from '../config/cloudinary';
+import { Validation } from '../validation/validation';
+import { AuthValidation } from '../validation/auth-validation';
 
 export class UserService {
     static async getUser(req: AuthUserRequest): Promise<GetUserResponse> {
@@ -42,8 +44,12 @@ export class UserService {
             throw new ResponseError(404, 'User not found');
         }
 
-        const { fullName, email } = updateRequest;
-        const username = updateRequest.username?.toLowerCase();
+        const updateUserRequest: UpdateUserRequest = Validation.validate(
+            AuthValidation.UPDATE,
+            updateRequest
+        );
+        const { fullName, email } = updateUserRequest;
+        const username = updateUserRequest.username?.toLowerCase();
 
         await checkUserExist(username, email, req.userId);
 
