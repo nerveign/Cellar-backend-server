@@ -7,9 +7,16 @@ export const requiredMessage = (text: string) => {
 };
 
 // check user exist by username and email
-export const checkUserExist = async (username: string, email: string) => {
-    const checkUsername = await User.findOne({ username });
-    const checkEmail = await User.findOne({ email });
+export const checkUserExist = async (
+    username?: string,
+    email?: string,
+    userId?: string
+) => {
+    const checkUsername = await User.findOne({
+        username,
+        _id: { $ne: userId },
+    });
+    const checkEmail = await User.findOne({ email, _id: { $ne: userId } });
 
     if (checkUsername || checkEmail) {
         throw new ResponseError(400, 'Username or Email already exists');

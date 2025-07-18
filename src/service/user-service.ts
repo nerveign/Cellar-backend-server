@@ -1,6 +1,7 @@
 import {
     AuthUserRequest,
     GetUserType,
+    toUserResponse,
     UpdateUserRequest,
     UserResponse,
 } from '../types/user-type';
@@ -39,7 +40,7 @@ export class UserService {
     static async updateUser(
         req: AuthUserRequest,
         updateRequest: UpdateUserRequest
-    ): Promise<UserResponse> {
+    ) {
         const user: IUser = (await User.findById(req.userId)) as IUser;
 
         if (!user) {
@@ -49,54 +50,26 @@ export class UserService {
         const { fullName, email } = updateRequest;
         const username = updateRequest.username?.toLowerCase();
 
-        if (!(user.username === username || user.email === email)) {
-            await checkUserExist(username as string, email as string);
-        }
+        await checkUserExist(username, email, req.userId);
 
         // if user not update the profile image
         if (!req.file) {
-            await User.updateOne(
+            const updateRequestResponse: IUser = (await User.findByIdAndUpdate(
                 { _id: req.userId },
-                {
-                    $set: {
-                        username,
-                        fullName,
-                        email,
-                    },
-                },
-                {
-                    upsert: false,
-                }
-            );
-
-            return {
-                _id: user.id,
-                username: username as string,
-                fullName: fullName as string,
-            };
+                { username, fullName, email },
+                { upsert: false, returnDocument: 'after' }
+            )) as IUser;
+            return toUserResponse(updateRequestResponse);
         }
 
         const result = await cloudinaryStorage(req.file?.path);
 
-        await User.updateOne(
+        const updateRequestResponse: IUser = (await User.findByIdAndUpdate(
             { _id: req.userId },
-            {
-                $set: {
-                    username,
-                    fullName,
-                    email,
-                    profileImg: result?.secure_url,
-                },
-            },
-            {
-                upsert: false,
-            }
-        );
+            { username, fullName, email, profileImg: result.secure_url },
+            { upsert: false, returnDocument: 'after' }
+        )) as IUser;
 
-        return {
-            _id: user.id,
-            username: username as string,
-            fullName: fullName as string,
-        };
+        return toUserResponse(updateRequestResponse);
     }
 }
