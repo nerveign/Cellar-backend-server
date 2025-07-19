@@ -40,8 +40,6 @@ export class UserService {
         req: AuthUserRequest,
         updateRequest: UpdateUserRequest
     ): Promise<UserResponse> {
-        await getUserData(req.userId);
-
         const updateUserRequest: UpdateUserRequest = Validation.validate(
             AuthValidation.UPDATE,
             updateRequest

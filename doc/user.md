@@ -111,7 +111,7 @@ Request Body (Success):
 ```json
 {
     "data": {
-        "_id": "192301123493430100",
+        "id": "68758fad361cc738a2d05138",
         "username": "holyservant",
         "fullName": "Holy Springer"
     }
