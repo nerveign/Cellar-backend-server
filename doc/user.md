@@ -84,8 +84,8 @@ Response Body (Success):
         "id": "68758fad361cc738a2d05138",
         "username": "holyservant",
         "fullName": "Holy Springer",
-        "profileImg": "",
-        "email": "holyservant@gmail.com"
+        "email": "holyservant@gmail.com",
+        "profileImg": "https://res.cloudinary.com/dlczbr5rk/image/upload/v1752825538/user-profile-image/ekmdey85hpje4p7ob7tf.jpg"
     }
 }
 ```
@@ -111,7 +111,7 @@ Request Body (Success):
 ```json
 {
     "data": {
-        "id": "68758fad361cc738a2d05138",
+        "_id": "68758fad361cc738a2d05138",
         "username": "holyservant",
         "fullName": "Holy Springer"
     }
