@@ -23,6 +23,23 @@ export class UserController {
         }
     }
 
+    static async getUserById(
+        req: AuthUserRequest,
+        res: Response,
+        next: NextFunction
+    ): Promise<void> {
+        try {
+            const userId = req.params.id;
+            const response: GetUserResponse =
+                await UserService.getUserById(userId);
+            res.status(200).json({
+                data: response,
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
     static async deleteUser(
         req: AuthUserRequest,
         res: Response,

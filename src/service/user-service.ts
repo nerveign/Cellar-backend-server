@@ -12,6 +12,7 @@ import { checkUserExist } from '../utils/helper';
 import { cloudinaryStorage } from '../config/cloudinary';
 import { Validation } from '../validation/validation';
 import { AuthValidation } from '../validation/auth-validation';
+import { Request } from 'express';
 
 const getUserData = async (userId?: string): Promise<IUser> => {
     const user: IUser = (await User.findById(userId)) as IUser;
@@ -26,6 +27,12 @@ const getUserData = async (userId?: string): Promise<IUser> => {
 export class UserService {
     static async getUser(req: AuthUserRequest): Promise<GetUserResponse> {
         const user: IUser = await getUserData(req.userId);
+
+        return toGetUserResponse(user);
+    }
+
+    static async getUserById(userId: string): Promise<GetUserResponse> {
+        const user: IUser = await getUserData(userId);
 
         return toGetUserResponse(user);
     }
