@@ -36,6 +36,15 @@ export class UserService {
         return toGetUserResponse(user);
     }
 
+    static async getAllUser(): Promise<Array<GetUserResponse>> {
+        const users: Array<IUser> = (await User.find(
+            {},
+            { password: 0, createdAt: 0, updatedAt: 0, __v: 0 }
+        )) as Array<IUser>;
+
+        return users.map((user) => toGetUserResponse(user));
+    }
+
     static async deleteUser(req: AuthUserRequest): Promise<any> {
         const user: IUser = await getUserData(req.userId);
 

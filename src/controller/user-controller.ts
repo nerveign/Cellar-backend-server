@@ -40,6 +40,22 @@ export class UserController {
         }
     }
 
+    static async getAllUser(
+        req: AuthUserRequest,
+        res: Response,
+        next: NextFunction
+    ): Promise<void> {
+        try {
+            const response: Array<GetUserResponse> =
+                await UserService.getAllUser();
+            res.status(200).json({
+                data: response,
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
     static async deleteUser(
         req: AuthUserRequest,
         res: Response,
