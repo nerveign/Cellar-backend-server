@@ -12,7 +12,6 @@ import { checkUserExist } from '../utils/helper';
 import { cloudinaryStorage } from '../config/cloudinary';
 import { Validation } from '../validation/validation';
 import { AuthValidation } from '../validation/auth-validation';
-import { Request } from 'express';
 
 const getUserData = async (userId?: string): Promise<IUser> => {
     const user: IUser = (await User.findById(userId)) as IUser;
