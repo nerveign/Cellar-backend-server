@@ -5,6 +5,7 @@ import { uploadPhoto } from '../middlewares/multer-middleware';
 
 const userRouter = Router();
 
+userRouter.get('/user/', protectedRoute, UserController.getAllUser);
 userRouter.get('/user/profile', protectedRoute, UserController.getUser);
 userRouter.get('/user/profile/:id', protectedRoute, UserController.getUserById);
 userRouter.delete(
