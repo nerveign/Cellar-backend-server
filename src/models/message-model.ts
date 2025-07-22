@@ -15,7 +15,7 @@ const messageSchema: Schema = new Schema<IMessage>(
             ref: 'User',
             required: true,
         },
-        text: { type: String },
+        text: { type: String, required: true },
         image: { type: String },
     },
     { timestamps: true }

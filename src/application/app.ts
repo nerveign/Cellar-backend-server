@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-
 import mainRouter from '../routes';
 import { connectDB } from '../config/database';
 import { errorMiddleware } from '../middlewares/error-middleware';
