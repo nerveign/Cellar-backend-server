@@ -1,5 +1,5 @@
 import { NextFunction, Response } from 'express';
-import { AuthMessageRequest } from '../types/message-type';
+import { AuthMessageRequest, SendMessageRequest } from '../types/message-type';
 import { MessageService } from '../service/message-service';
 
 export class MessageController {
@@ -24,7 +24,8 @@ export class MessageController {
         next: NextFunction
     ): Promise<void> {
         try {
-            const response = await MessageService.sendMessages(req);
+            const request: SendMessageRequest = req.body;
+            const response = await MessageService.sendMessages(req, request);
             res.status(200).json({
                 data: response,
             });

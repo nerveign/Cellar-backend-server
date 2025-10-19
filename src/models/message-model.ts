@@ -4,7 +4,7 @@ export interface IMessage extends Document {
     senderId: object;
     receiverId: object;
     text: string;
-    image: string;
+    image?: string;
 }
 
 const messageSchema: Schema = new Schema<IMessage>(

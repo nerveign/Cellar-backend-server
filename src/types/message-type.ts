@@ -7,6 +7,12 @@ export type GetMessageResponse = {
     imageUrl?: string;
 };
 
+export type SendMessageRequest = {
+    text: string;
+    image?: string;
+};
+
 export interface AuthMessageRequest extends Request {
     userId?: string;
+    body: SendMessageRequest;
 }
