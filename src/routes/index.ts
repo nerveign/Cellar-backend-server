@@ -6,7 +6,7 @@ import messageRouter from './message-route';
 
 const mainRouter = Router();
 
-mainRouter.use('/auth', authRouter);
+mainRouter.use(authRouter);
 mainRouter.use(userRouter);
 mainRouter.use(messageRouter);
 

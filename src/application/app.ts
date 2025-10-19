@@ -5,9 +5,7 @@ import mainRouter from '../routes';
 import { connectDB } from '../config/database';
 import { errorMiddleware } from '../middlewares/error-middleware';
 import { notFoundHandler } from '../middlewares/errorNotFound-middleware';
-import dotenv from 'dotenv';
 
-dotenv.config();
 export const app = express();
 
 // Middleware
