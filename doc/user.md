@@ -90,7 +90,7 @@ Response Body (Success):
 }
 ```
 
-Response Body (Failed):
+Response Body (Error):
 
 ```json
 {
@@ -120,7 +120,7 @@ Response Body (Success):
 }
 ```
 
-Response Body (Failed):
+Response Body (Error):
 
 ```json
 {
@@ -159,7 +159,7 @@ Response Body (Success):
 }
 ```
 
-Response Body (Failed):
+Response Body (Error):
 
 ```json
 {
@@ -175,19 +175,30 @@ Request Header:
 
 - jwt : cookie token
 
-Request Body (Success):
+Request Body :
+
+```jsonc
+{
+    "username": "holyservant_",
+    "fullName": "Holy Springer",
+    "email": "holyservant@gmail.com",
+    "profilImg": "https://res.cloudinary.com/dlczbr5rk/image/upload/v1752825538/user-profile-image/ekmdey85hpje4p7ob7tf.jpg",
+}
+```
+
+Response Body (Success):
 
 ```json
 {
     "data": {
         "_id": "68758fad361cc738a2d05138",
-        "username": "holyservant",
+        "username": "holyservant_",
         "fullName": "Holy Springer"
     }
 }
 ```
 
-Response Body (Failed):
+Response Body (Error):
 
 ```json
 {
@@ -211,7 +222,7 @@ Response Body (Success):
 }
 ```
 
-Response Body (Failed):
+Response Body (Error):
 
 ```json
 {
@@ -235,7 +246,7 @@ Response Body (Success):
 }
 ```
 
-Response Body (Failed):
+Response Body (Error):
 
 ```json
 {
