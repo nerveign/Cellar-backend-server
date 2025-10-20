@@ -1,5 +1,9 @@
 import { NextFunction, Response } from 'express';
-import { AuthMessageRequest, SendMessageRequest } from '../types/message-type';
+import {
+    AuthMessageRequest,
+    MessageResponse,
+    SendMessageRequest,
+} from '../types/message-type';
 import { MessageService } from '../service/message-service';
 
 export class MessageController {
@@ -9,7 +13,8 @@ export class MessageController {
         next: NextFunction
     ): Promise<void> {
         try {
-            const response = await MessageService.getMessages(req);
+            const response: Array<MessageResponse> =
+                await MessageService.getMessages(req);
             res.status(200).json({
                 data: response,
             });
@@ -25,7 +30,10 @@ export class MessageController {
     ): Promise<void> {
         try {
             const request: SendMessageRequest = req.body;
-            const response = await MessageService.sendMessages(req, request);
+            const response: MessageResponse = await MessageService.sendMessages(
+                req,
+                request
+            );
             res.status(200).json({
                 data: response,
             });
