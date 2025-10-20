@@ -7,13 +7,13 @@ import { errorMiddleware } from '../middlewares/error-middleware';
 import { notFoundHandler } from '../middlewares/errorNotFound-middleware';
 
 export const app = express();
-connectDB();
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
 app.use(cookieParser());
+connectDB();
 
 // Route
 app.use('/api/v1', mainRouter);

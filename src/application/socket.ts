@@ -1,8 +1,7 @@
 import { Server, Socket } from 'socket.io';
 import http from 'http';
-import express, { Application } from 'express';
+import { app } from './app';
 
-const app: Application = express();
 const server = http.createServer(app);
 
 interface UserSocketMap {
