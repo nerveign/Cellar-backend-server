@@ -16,6 +16,22 @@ export type SendMessageRequest = {
     image?: string;
 };
 
+export type UpdateMessage = {
+    text: string;
+};
+export interface GetIdMessage extends Request {
+    params: {
+        id: string;
+    };
+}
+
+export interface UpdateMessageRequest extends Request {
+    params: {
+        id: string;
+    };
+    body: UpdateMessage;
+}
+
 export interface AuthMessageRequest extends Request {
     userId?: string;
     body: SendMessageRequest;

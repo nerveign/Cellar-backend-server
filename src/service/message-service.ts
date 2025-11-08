@@ -3,6 +3,7 @@ import {
     MessageResponse,
     SendMessageRequest,
     toMessageResponse,
+    UpdateMessageRequest,
 } from '../types/message-type';
 import { IMessage, Message } from '../models/message-model';
 import { getReceiverSocketId, io } from '../application/socket';
@@ -24,7 +25,7 @@ export class MessageService {
         return messages.map((message) => toMessageResponse(message));
     }
 
-    static async sendMessages(
+    static async sendMessage(
         req: AuthMessageRequest,
         sendRequest: SendMessageRequest
     ): Promise<MessageResponse> {
@@ -47,5 +48,21 @@ export class MessageService {
         }
 
         return toMessageResponse(newMessage);
+    }
+
+    static async updateMessage(
+        req: AuthMessageRequest,
+        updateRequest: UpdateMessageRequest
+    ): Promise<MessageResponse> {
+        const { text } = updateRequest.body;
+        const { id } = updateRequest.params;
+
+        const updatedMessage: IMessage = (await Message.findByIdAndUpdate(
+            id,
+            { text },
+            { upsert: false, returnDocument: 'after' }
+        )) as IMessage;
+
+        return toMessageResponse(updatedMessage);
     }
 }

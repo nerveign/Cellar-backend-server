@@ -30,13 +30,25 @@ export class MessageController {
     ): Promise<void> {
         try {
             const request: SendMessageRequest = req.body;
-            const response: MessageResponse = await MessageService.sendMessages(
+            const response: MessageResponse = await MessageService.sendMessage(
                 req,
                 request
             );
             res.status(200).json({
                 data: response,
             });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    static async updateMessage(
+        req: AuthMessageRequest,
+        res: Response,
+        next: NextFunction
+    ): Promise<void> {
+        try {
+            const request = '';
         } catch (error) {
             next(error);
         }
